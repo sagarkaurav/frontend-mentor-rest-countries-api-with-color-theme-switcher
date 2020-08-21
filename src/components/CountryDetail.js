@@ -19,7 +19,7 @@ const CountryDetail = () => {
             const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
             fetch(allCountriesAPI)
                 .then(response => response.json())
-                .then((json) => { try { localStorage.setItem('countries', JSON.stringify(json)); } catch (err) { } setCountries(json) });
+                .then((json) => { try { localStorage.setItem('countries', JSON.stringify(json)); } catch (err) { } setCountries(json); setCountry(filterCoutry(json, countryCode)) });
 
         }
         else {
