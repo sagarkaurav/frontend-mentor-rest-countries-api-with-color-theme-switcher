@@ -11,12 +11,15 @@ const CountryDetail = () => {
     const [countries, setCountries] = useState([]);
 
     useEffect(() => {
-        let cacheCountires = localStorage.getItem('countries');
+        let cacheCountires = null;
+        try {
+            cacheCountires = localStorage.getItem('countries');
+        } catch (err) { }
         if (cacheCountires == null) {
             const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
             fetch(allCountriesAPI)
                 .then(response => response.json())
-                .then((json) => { localStorage.setItem('countries', JSON.stringify(json)); setCountries(json) });
+                .then((json) => { try { localStorage.setItem('countries', JSON.stringify(json)); } catch (err) { } setCountries(json) });
 
         }
         else {

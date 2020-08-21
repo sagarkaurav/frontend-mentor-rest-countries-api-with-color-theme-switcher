@@ -12,12 +12,17 @@ const App = () => {
   const [searchString, setSearchString] = useState('');
   const [regionFilter, setRegionFilter] = useState('All');
   useEffect(() => {
-    let cacheCountries = localStorage.getItem('countries');
+    let cacheCountries = null;
+    try {
+      cacheCountries = localStorage.getItem('countries');
+    }
+    catch (err) {
+    }
     if (cacheCountries == null) {
       const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
       fetch(allCountriesAPI)
         .then(response => response.json())
-        .then((json) => { localStorage.setItem('countries', JSON.stringify(json)); setCountries(json) });
+        .then((json) => { try { localStorage.setItem('countries', JSON.stringify(json)); } catch (err) { } setCountries(json) });
     }
     else {
       setCountries(JSON.parse(cacheCountries));
