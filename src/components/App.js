@@ -72,7 +72,7 @@ const App = () => {
             </>
           </Route>
           <Route path="/detail/:countryCode" exact >
-            <CountryDetail />
+            <CountryDetail countries={countries} />
           </Route>
         </Switch>
         <Footer />
