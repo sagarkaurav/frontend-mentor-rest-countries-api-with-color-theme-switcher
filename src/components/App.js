@@ -19,7 +19,7 @@ const App = () => {
     catch (err) {
     }
     if (cacheCountries == null) {
-      const allCountriesAPI = 'https://restcountries.eu/rest/v2/all';
+      const allCountriesAPI = 'https://restcountries.com/v2/all';
       fetch(allCountriesAPI)
         .then(response => response.json())
         .then((json) => { try { localStorage.setItem('countries', JSON.stringify(json)); } catch (err) { } setCountries(json) });
